@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body style="text-align: center;">
+  <h2>Add Stocks</h2>
+  <div>
+  <form #iForm=ngForm (ngSubmit)="onSubmit()">
+    <label>Id</label>
+    <input type="text" name="id" [(ngModel)]="formData.id" required>
+    <br><br>
+    <label>Company code</label>
+    <select name="name" [(ngModel)]="formData.companyName" >
+      <option value="None">Select</option>
+      <option *ngFor="let s of comp" value="{{s.companyName}}">{{s.companyName}}</option>
+      </select>
+    <br><br>
+
+    <label>Date</label>
+    <input type="date" name="date" [(ngModel)]="formData.Date" required>
+    <br><br>
+    <label>Time</label>
+    <input type="text" name="time" [(ngModel)]="formData.Time" required>
+    <br><br>
+    <label>Price</label>
+    <input type="text" name="price" [(ngModel)]="formData.price" required>
+
+  </form>
+</div>
+<br>
+<div class="container">
+  <table class="table table-bordered">
+    <thead class="thead-inverse thead-dark">
+      <tr>
+        <th>Id</th>
+        <th>Company Name</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of ipos">
+        <td>{{ s.id }}</td>
+        <td>{{ s.companyName }}</td>
+        <td>{{ s.Date }}</td>
+        <td>{{ s.Time }}</td>
+        <td>{{ s.price }}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <button type="button" class="btn btn-link"><a [routerLink]="['/']" routerLinkActive="router-link-active" >Back</a></button>
+  <router-outlet></router-outlet>
+
+

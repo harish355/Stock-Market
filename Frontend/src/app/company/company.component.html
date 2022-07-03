@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body style="text-align: center;">
+  <h2>Add Company</h2>
+  <div>
+  <form #cForm=ngForm (ngSubmit)="onSubmit()">
+    <label>Company Code</label>
+    <input type="text" name="id" [(ngModel)]="formData.companyId" required>
+    <br><br>
+    <label>Company Name</label>
+    <input type="text" name="name" [(ngModel)]="formData.companyName" required>
+    <br><br>
+    <label>Company CEO</label>
+    <input type="text" name="ceo" [(ngModel)]="formData.ceo" required>
+    <br><br>
+    <label>Turnover</label>
+    <input type="text" name="turnover" [(ngModel)]="formData.turnover" required>
+    <br><br>
+    <label> Stock Exchanges</label>
+    <input type="text" name="turnover" [(ngModel)]="formData.listedInStockExchanges" required>
+
+    <br><br>
+    <label>Website</label>
+    <input type="text" name="bod" [(ngModel)]="formData.website" required>
+    <input type="submit" value="Submit">
+    
+  </form>
+</div>
+<br>
+<div class="container">
+  <table class="table table-bordered">
+    <thead class="thead-inverse thead-dark">
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>CEO</th>
+        <th>Turnover</th>
+        <th>Stock Exchanges</th>
+        <th>website</th>
+        <th>Delete</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of companies">
+        <td>{{ s.companyId }}</td>
+        <td>{{ s.companyName }}</td>
+        <td>{{ s.ceo }}</td>
+        <td>{{ s.turnover }}</td>
+        <td>{{s.listedInStockExchanges}}</td>
+        <td>{{ s.website }}</td>
+        <td><button (click)="onDelete(s.companyId)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <button type="button" class="btn btn-link"><a [routerLink]="['/']" routerLinkActive="router-link-active" >Back</a></button>
+  <router-outlet></router-outlet>
+
+
